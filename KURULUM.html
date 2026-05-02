@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YSY Sigorta – Kurulum Rehberi</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f4fb;color:#1e293b;line-height:1.6}
+.page{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem}
+h1{font-size:2rem;color:#0b1f3a;margin-bottom:.3rem}
+.subtitle{color:#64748b;font-size:1rem;margin-bottom:2.5rem}
+.card{background:#fff;border-radius:16px;padding:2rem;margin-bottom:1.5rem;border:1.5px solid #e2e8f0;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.card-title{font-size:1.1rem;font-weight:700;color:#0b1f3a;display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem}
+.step-num{width:32px;height:32px;background:linear-gradient(135deg,#0b1f3a,#1450a3);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.step-num.green{background:linear-gradient(135deg,#16a34a,#22c55e)}
+.step-num.amber{background:linear-gradient(135deg,#d97706,#f59e0b)}
+p{color:#475569;font-size:.95rem;margin-bottom:.8rem}
+ul,ol{padding-left:1.5rem;color:#475569;font-size:.95rem}
+li{margin-bottom:.5rem}
+code{background:#f1f5f9;color:#1450a3;padding:.15rem .5rem;border-radius:5px;font-family:'Courier New',monospace;font-size:.88rem;font-weight:600}
+pre{background:#0f172a;color:#e2e8f0;padding:1.2rem 1.5rem;border-radius:12px;font-size:.85rem;font-family:'Courier New',monospace;overflow-x:auto;margin:.8rem 0;line-height:1.7}
+pre .cmd{color:#86efac}
+pre .comment{color:#64748b}
+pre .path{color:#fbbf24}
+.warn{background:#fffbeb;border:1.5px solid #fcd34d;border-radius:10px;padding:1rem 1.2rem;display:flex;gap:.8rem;align-items:flex-start;margin:.8rem 0}
+.warn-icon{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+.warn p{margin:0;color:#78350f;font-size:.9rem}
+.info{background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:1rem 1.2rem;display:flex;gap:.8rem;align-items:flex-start;margin:.8rem 0}
+.info p{margin:0;color:#1e40af;font-size:.9rem}
+.success{background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:1rem 1.2rem;display:flex;gap:.8rem;align-items:flex-start;margin:.8rem 0}
+.success p{margin:0;color:#14532d;font-size:.9rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.mini-card{background:#f8fafc;border-radius:12px;padding:1.2rem;border:1.5px solid #e2e8f0}
+.mini-card h4{font-size:.9rem;color:#0b1f3a;margin-bottom:.5rem}
+.mini-card p{font-size:.82rem;margin:0;color:#64748b}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{text-align:left;padding:.7rem 1rem;background:#f8fafc;border-bottom:2px solid #e2e8f0;color:#64748b;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px}
+td{padding:.75rem 1rem;border-bottom:1px solid #f1f5f9;color:#1e293b}
+tr:last-child td{border-bottom:none}
+.badge{display:inline-block;padding:.2rem .6rem;border-radius:50px;font-size:.72rem;font-weight:700}
+.badge-green{background:#dcfce7;color:#15803d}
+.badge-blue{background:#dbeafe;color:#1d4ed8}
+.badge-amber{background:#fef3c7;color:#92400e}
+.logo-area{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.logo-icon{width:52px;height:52px;background:linear-gradient(135deg,#0b1f3a,#1450a3);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem}
+h2{font-size:1.3rem;color:#0b1f3a;margin:1.5rem 0 .8rem}
+hr{border:none;border-top:1.5px solid #e2e8f0;margin:1.2rem 0}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="logo-area">
+    <div class="logo-icon">🛡️</div>
+    <div>
+      <h1>YSY Sigorta – Kurulum Rehberi</h1>
+      <p class="subtitle">Adım adım hosting kurulumu ve admin panel kullanımı</p>
+    </div>
+  </div>
+
+  <!-- ─── GEREKSİNİMLER ─── -->
+  <div class="card">
+    <div class="card-title"><div class="step-num">✓</div> Gereksinimler</div>
+    <div class="grid2">
+      <div class="mini-card"><h4>🖥️ Sunucu</h4><p>Apache veya Nginx web sunucusu</p></div>
+      <div class="mini-card"><h4>🐘 PHP</h4><p>PHP 7.4 veya üzeri (PHP 8.x önerilir)</p></div>
+      <div class="mini-card"><h4>📦 Modül</h4><p>Apache: <code>mod_rewrite</code> aktif olmalı</p></div>
+      <div class="mini-card"><h4>💾 Alan</h4><p>Minimum 50 MB disk alanı</p></div>
+    </div>
+    <div class="info" style="margin-top:1rem"><p>ℹ️ Türkiye'deki popüler hostingler (Turhost, Natro, İsimtescil, Guzel Hosting vb.) bu gereksinimlerin hepsini karşılar. cPanel barındırıcılar da uygundur.</p></div>
+  </div>
+
+  <!-- ─── ADIM 1: ZIP ─── -->
+  <div class="card">
+    <div class="card-title"><div class="step-num">1</div> ZIP Dosyasını İndirin ve Açın</div>
+    <p>İndirdiğiniz <code>ysy_sigorta_website.zip</code> dosyasını bilgisayarınızda bir klasöre çıkarın.</p>
+    <p>Çıkardığınızda şu yapıyı göreceksiniz:</p>
+    <pre><span class="path">ysy_sigorta/</span>
+├── <span class="path">index.php</span>          ← Ana sayfa
+├── <span class="path">kurumsal.php</span>
+├── <span class="path">urunlerimiz.php</span>
+├── <span class="path">subelerimiz.php</span>
+├── <span class="path">blog.php</span>
+├── <span class="path">iletisim.php</span>
+├── <span class="path">submit_form.php</span>
+├── <span class="path">.htaccess</span>
+├── <span class="path">admin/</span>             ← Admin paneli
+├── <span class="path">data/</span>              ← JSON veritabanı (koruyun!)
+├── <span class="path">includes/</span>          ← Ortak header/footer
+└── <span class="path">uploads/</span>           ← Görseller & logo</pre>
+  </div>
+
+  <!-- ─── ADIM 2: FTP ─── -->
+  <div class="card">
+    <div class="card-title"><div class="step-num">2</div> Dosyaları Hostinge Yükleyin (FTP)</div>
+
+    <h2>Yöntem A – cPanel File Manager (En kolay)</h2>
+    <ol>
+      <li>Hosting panelinize giriş yapın (genellikle <code>siteadiniz.com/cpanel</code>)</li>
+      <li><strong>File Manager</strong> → <strong>public_html</strong> klasörünü açın</li>
+      <li>Sağ üstten <strong>Upload</strong> butonuna tıklayın</li>
+      <li><code>ysy_sigorta_website.zip</code> dosyasını yükleyin</li>
+      <li>Yüklenen ZIP üzerine sağ tıklayın → <strong>Extract</strong> seçin</li>
+      <li>Çıkan <code>ysy_sigorta</code> klasörünün <strong>içindeki tüm dosyaları</strong> <code>public_html/</code>'e taşıyın</li>
+    </ol>
+
+    <div class="warn"><span class="warn-icon">⚠️</span><p><strong>Dikkat:</strong> <code>public_html/</code> içine <code>ysy_sigorta</code> klasörü değil, klasörün <em>içindeki dosyalar</em> gelmeli. Yani <code>public_html/index.php</code> olmalı, <code>public_html/ysy_sigorta/index.php</code> değil.</p></div>
+
+    <h2>Yöntem B – FileZilla (FTP programı)</h2>
+    <ol>
+      <li><a href="https://filezilla-project.org" target="_blank">FileZilla</a>'yı indirin ve kurun</li>
+      <li>Hosting firmanızdan aldığınız FTP bilgilerini girin:<br>
+        Host: <code>ftp.siteadiniz.com</code> &nbsp;|&nbsp; Kullanıcı adı &amp; Şifre</li>
+      <li>Sol panel (bilgisayarınız): <code>ysy_sigorta/</code> klasörünü bulun</li>
+      <li>Sağ panel (sunucu): <code>public_html/</code> klasörüne gelin</li>
+      <li>Sol panelden tüm dosyaları seçip sağ panele sürükleyin</li>
+    </ol>
+  </div>
+
+  <!-- ─── ADIM 3: İZİNLER ─── -->
+  <div class="card">
+    <div class="card-title"><div class="step-num">3</div> Klasör İzinlerini Ayarlayın</div>
+    <p>Site çalışması için bazı klasörlerin <strong>yazılabilir</strong> olması gerekir.</p>
+
+    <h2>cPanel File Manager ile:</h2>
+    <ol>
+      <li>File Manager'da <code>public_html/data/</code> klasörüne sağ tıklayın</li>
+      <li><strong>Change Permissions</strong> seçin → <code>755</code> yazın → OK</li>
+      <li>Aynı işlemi şu klasörler için tekrarlayın:</li>
+    </ol>
+
+    <table style="margin:.8rem 0">
+      <thead><tr><th>Klasör</th><th>İzin</th><th>Neden?</th></tr></thead>
+      <tbody>
+        <tr><td><code>data/</code></td><td><span class="badge badge-green">755</span></td><td>JSON kayıtlarını yazabilmek için</td></tr>
+        <tr><td><code>uploads/</code></td><td><span class="badge badge-green">755</span></td><td>Görsel yükleyebilmek için</td></tr>
+        <tr><td><code>uploads/genel/</code></td><td><span class="badge badge-green">755</span></td><td>Logo yükleyebilmek için</td></tr>
+        <tr><td><code>uploads/blog/</code></td><td><span class="badge badge-green">755</span></td><td>Blog görseli yükleyebilmek için</td></tr>
+      </tbody>
+    </table>
+
+    <h2>SSH / Terminal ile (alternatif):</h2>
+    <pre><span class="cmd">chmod</span> 755 data/ uploads/ uploads/genel/ uploads/blog/
+<span class="cmd">chmod</span> 644 data/*.json</pre>
+
+    <div class="info"><p>ℹ️ İzin vermede sorun yaşarsanız hosting destek ekibinizden yardım isteyin. "data ve uploads klasörlerine 755 yazma izni gerekiyor" deyin.</p></div>
+  </div>
+
+  <!-- ─── ADIM 4: ADMIN ─── -->
+  <div class="card">
+    <div class="card-title"><div class="step-num green">4</div> Admin Paneline Giriş Yapın</div>
+    <p>Tarayıcınızda şu adrese gidin:</p>
+    <pre><span class="path">https://siteadiniz.com/admin</span></pre>
+
+    <table style="margin:.8rem 0 1.2rem">
+      <thead><tr><th>Alan</th><th>Değer</th></tr></thead>
+      <tbody>
+        <tr><td>URL</td><td><code>/admin</code> veya <code>/admin/index.php</code></td></tr>
+        <tr><td>Varsayılan Şifre</td><td><code>password</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="warn"><span class="warn-icon">🔐</span><p><strong>Güvenlik:</strong> Giriş yaptıktan hemen sonra Admin Panel → <strong>Şifre Değiştir</strong> menüsünden şifrenizi mutlaka değiştirin!</p></div>
+  </div>
+
+  <!-- ─── ADIM 5: LOGO ─── -->
+  <div class="card">
+    <div class="card-title"><div class="step-num amber">5</div> Logo ve Site Ayarlarını Yapın</div>
+    <ol>
+      <li>Admin paneline giriş yapın</li>
+      <li>Sol menüden <strong>Fotoğraflar & Logo</strong>'ya tıklayın</li>
+      <li><strong>Logo</strong> sekmesinde "Tıklayın veya sürükleyin" alanına logonuzu yükleyin</li>
+      <li>Sol menüden <strong>Site Ayarları</strong>'na gidin</li>
+      <li>Telefon, e-posta, adres, WhatsApp numarasını güncelleyin</li>
+      <li><strong>Değişiklikleri Kaydet</strong>'e tıklayın</li>
+    </ol>
+    <div class="success"><p>✅ Logo ve iletişim bilgilerini güncellediğinizde site otomatik olarak güncellenir, yeniden yükleme gerekmez.</p></div>
+  </div>
+
+  <!-- ─── ADMIN PANELİ ─── -->
+  <div class="card">
+    <div class="card-title">🖥️ Admin Paneli Özellikleri</div>
+    <table>
+      <thead><tr><th>Menü</th><th>Ne Yapabilirsiniz</th></tr></thead>
+      <tbody>
+        <tr><td>📊 Dashboard</td><td>Genel özet – form sayısı, okunmamış talepler, hızlı erişim</td></tr>
+        <tr><td>📨 Form Talepleri</td><td>Siteden gelen teklif formlarını görüntüle, ara, WhatsApp'a yönlendir, sil</td></tr>
+        <tr><td>⚙️ Site Ayarları</td><td>Telefon, e-posta, adres, Instagram, hero metni, istatistik kutucukları</td></tr>
+        <tr><td>🛡️ Ürün Yönetimi</td><td>Sigorta ürünlerini ekle, düzenle, pasif/aktif yap, sırala, yeni kategori ekle</td></tr>
+        <tr><td>📰 Blog Yazıları</td><td>Yeni yazı yaz, görsel ekle, yayınla/taslak yap, sil</td></tr>
+        <tr><td>🗺️ Şubeler</td><td>Şube ekle (adres, telefon, saatler, harita linki), düzenle, sil</td></tr>
+        <tr><td>🖼️ Fotoğraflar & Logo</td><td>PC'den logo yükle, blog görseli yükle, yönet, sil</td></tr>
+        <tr><td>🔑 Şifre Değiştir</td><td>Admin şifresini güvenli şekilde güncelle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── SORUN GİDERME ─── -->
+  <div class="card">
+    <div class="card-title">🔧 Sık Karşılaşılan Sorunlar</div>
+
+    <h2>Sayfa açılmıyor / 500 hatası</h2>
+    <ul>
+      <li><code>.htaccess</code> dosyası yüklendi mi kontrol edin (gizli dosya olabilir – FileZilla'da <em>Sunucu → Gizli Dosyaları Göster</em>)</li>
+      <li>Hosting panelinizde <code>mod_rewrite</code> aktif mi kontrol edin</li>
+      <li>PHP sürümünüzün 7.4+ olduğundan emin olun</li>
+    </ul>
+
+    <h2>Logo görünmüyor</h2>
+    <ul>
+      <li><code>uploads/genel/</code> klasörüne yazma izni (755) verildi mi?</li>
+      <li>Admin → Fotoğraflar & Logo'dan logoyu tekrar yükleyin</li>
+    </ul>
+
+    <h2>Form gönderilmiyor</h2>
+    <ul>
+      <li><code>data/</code> klasörüne yazma izni (755) verildi mi?</li>
+      <li><code>data/forms.json</code> dosyası var mı? (ZIP ile gelmelidir)</li>
+    </ul>
+
+    <h2>Admin sayfasına giremiyorum</h2>
+    <ul>
+      <li>Doğru adres: <code>siteadiniz.com/admin</code> ya da <code>siteadiniz.com/admin/index.php</code></li>
+      <li>Varsayılan şifre: <code>password</code></li>
+    </ul>
+
+    <h2>Ürünler/Blog görünmüyor</h2>
+    <ul>
+      <li>Admin panelinden ürünlerin "Aktif" olarak işaretlendiğinden emin olun</li>
+      <li><code>data/products.json</code> dosyasının sunucuda var olduğunu kontrol edin</li>
+    </ul>
+
+    <div class="info"><p>ℹ️ Herhangi bir sorun için sitenin PHP hata loglarına bakın. cPanel → <strong>Errors</strong> veya <strong>Raw Access Logs</strong> bölümünden erişebilirsiniz.</p></div>
+  </div>
+
+  <!-- ─── DOSYA YAPISI ─── -->
+  <div class="card">
+    <div class="card-title">📁 Tam Dosya Yapısı</div>
+    <pre><span class="path">public_html/</span>
+├── <span class="cmd">index.php</span>              ← Ana sayfa
+├── <span class="cmd">kurumsal.php</span>           ← Kurumsal sayfası
+├── <span class="cmd">urunlerimiz.php</span>        ← Ürünler (JSON'dan okur)
+├── <span class="cmd">subelerimiz.php</span>        ← Şubeler (JSON'dan okur)
+├── <span class="cmd">blog.php</span>               ← Blog listesi
+├── <span class="cmd">blog-post.php</span>          ← Blog yazısı detay
+├── <span class="cmd">iletisim.php</span>           ← İletişim & teklif formu
+├── <span class="cmd">submit_form.php</span>        ← Form gönderme (AJAX)
+├── <span class="cmd">.htaccess</span>              ← URL yönlendirme + güvenlik
+│
+├── <span class="path">includes/</span>
+│   ├── <span class="cmd">header.php</span>         ← Ortak üst bölüm (nav, logo)
+│   └── <span class="cmd">footer.php</span>         ← Ortak alt bölüm + WhatsApp
+│
+├── <span class="path">admin/</span>                 ← Admin paneli (/admin ile erişilir)
+│   ├── <span class="cmd">index.php</span>          ← Giriş sayfası
+│   ├── <span class="cmd">dashboard.php</span>      ← Ana ekran
+│   ├── <span class="cmd">forms.php</span>          ← Form talepleri
+│   ├── <span class="cmd">site-settings.php</span>  ← Site ayarları
+│   ├── <span class="cmd">products.php</span>       ← Ürün yönetimi
+│   ├── <span class="cmd">blog.php</span>           ← Blog yönetimi
+│   ├── <span class="cmd">branches.php</span>       ← Şube yönetimi
+│   ├── <span class="cmd">photos.php</span>         ← Logo & görsel yükleme
+│   ├── <span class="cmd">change-password.php</span>← Şifre değiştirme
+│   ├── <span class="cmd">logout.php</span>         ← Çıkış
+│   ├── <span class="cmd">auth.php</span>           ← Oturum kontrolü
+│   ├── <span class="cmd">layout.php</span>         ← Admin panel tasarım (header)
+│   └── <span class="cmd">layout_end.php</span>     ← Admin panel tasarım (footer)
+│
+├── <span class="path">data/</span>                  ← JSON veritabanı (silmeyin!)
+│   ├── <span class="cmd">config.json</span>        ← Site ayarları + admin şifresi
+│   ├── <span class="cmd">forms.json</span>         ← Gelen form talepleri
+│   ├── <span class="cmd">products.json</span>      ← Sigorta ürünleri
+│   ├── <span class="cmd">blog.json</span>          ← Blog yazıları
+│   ├── <span class="cmd">branches.json</span>      ← Şube bilgileri
+│   └── <span class="cmd">.htaccess</span>          ← Dışarıdan erişimi engeller
+│
+└── <span class="path">uploads/</span>               ← Yüklenen görseller
+    ├── <span class="path">genel/</span>             ← Logo ve genel görseller
+    │   └── <span class="cmd">logo.png</span>
+    └── <span class="path">blog/</span>              ← Blog görselleri</pre>
+  </div>
+
+  <div style="text-align:center;color:#94a3b8;font-size:.82rem;margin-top:2rem">
+    YSY Sigorta Web Sitesi &nbsp;|&nbsp; PHP + JSON &nbsp;|&nbsp; Tüm hakları saklıdır
+  </div>
+</div>
+</body>
+</html>
